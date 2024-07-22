@@ -23,5 +23,13 @@ public class AddressRecord {
         this.fullAddressString = addressFullString;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
 }
 

@@ -15,7 +15,7 @@ public class TickQuoteRecord {
     @Column("insurer_id")
     private UUID insurerId;
     @Column("address_id")
-    private AddressRecord address;
+    private UUID address_id;
     @Column("start_date")
     private LocalDateTime startDate;
     @Column("end_date")
@@ -37,14 +37,6 @@ public class TickQuoteRecord {
         this.insurerId = insurerId;
     }
 
-    public AddressRecord getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressRecord address) {
-        this.address = address;
-    }
-
     public LocalDateTime getStartDate() {
         return startDate;
     }
@@ -59,6 +51,14 @@ public class TickQuoteRecord {
 
     public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
+    }
+
+    public UUID getAddress_id() {
+        return address_id;
+    }
+
+    public void setAddress_id(UUID address_id) {
+        this.address_id = address_id;
     }
 
 }
