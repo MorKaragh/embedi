@@ -11,7 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 public class TickQuoteRecord {
 
     @Id
-    private UUID id = UUID.randomUUID();
+    private UUID id;
     @Column("insurer_id")
     private UUID insurerId;
     @Column("address_id")
