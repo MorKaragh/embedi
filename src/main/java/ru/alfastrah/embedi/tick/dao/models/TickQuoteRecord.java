@@ -20,6 +20,10 @@ public class TickQuoteRecord {
     private LocalDateTime startDate;
     @Column("end_date")
     private LocalDateTime endDate;
+    @Column("premium")
+    private Double premium;
+    @Column("stream_quote_id")
+    private String streamQuoteId;
 
     public UUID getId() {
         return id;
@@ -59,6 +63,22 @@ public class TickQuoteRecord {
 
     public void setAddress_id(UUID address_id) {
         this.address_id = address_id;
+    }
+
+    public Double getPremium() {
+        return premium;
+    }
+
+    public void setPremium(Double premium) {
+        this.premium = premium;
+    }
+
+    public String getStreamQuoteId() {
+        return streamQuoteId;
+    }
+
+    public void setStreamQuoteId(String streamQuoteId) {
+        this.streamQuoteId = streamQuoteId;
     }
 
 }

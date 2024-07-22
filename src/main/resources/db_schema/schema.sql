@@ -1,5 +1,3 @@
-CREATE DATABASE IF NOT EXISTS postgres;
-
 CREATE TABLE IF NOT EXISTS agents (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(255) NOT NULL
@@ -21,10 +19,11 @@ CREATE TABLE IF NOT EXISTS addresses (
 CREATE TABLE IF NOT EXISTS tick_quotes (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     premium DECIMAL,
-    insurer UUID REFERENCES persons(id),
-    date_start TIMESTAMP WITH TIME ZONE NOT NULL,
-    date_end TIMESTAMP WITH TIME ZONE NOT NULL,
-    address UUID REFERENCES addresses(id)
+    stream_quote_id VARCHAR(50),
+    insurer_id UUID REFERENCES persons(id),
+    start_date TIMESTAMP WITH TIME ZONE NOT NULL,
+    end_date TIMESTAMP WITH TIME ZONE NOT NULL,
+    address_id UUID REFERENCES addresses(id)
 );
 
 CREATE TABLE IF NOT EXISTS tick_insurers (
@@ -32,5 +31,6 @@ CREATE TABLE IF NOT EXISTS tick_insurers (
     quote_id UUID REFERENCES tick_quotes(id),
     insurer_id UUID REFERENCES persons(id)
 );
+
 
 
