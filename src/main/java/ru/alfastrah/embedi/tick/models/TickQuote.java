@@ -7,12 +7,13 @@ import java.util.UUID;
 
 public class TickQuote {
 
-    private UUID id = UUID.randomUUID();
+    private UUID id;
     private List<Person> insuredPersons;
     private Person insurer;
     private Address address;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+    private Double premium;
 
     public UUID getId() {
         return id;
@@ -60,6 +61,14 @@ public class TickQuote {
 
     public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
+    }
+
+    public Double getPremium() {
+        return premium;
+    }
+
+    public void setPremium(Double premium) {
+        this.premium = premium;
     }
 
 }

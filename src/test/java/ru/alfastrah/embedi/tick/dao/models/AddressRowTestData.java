@@ -1,14 +1,14 @@
 package ru.alfastrah.embedi.tick.dao.models;
 
-public class AddressRecordTest {
+public class AddressRowTestData {
 
-    public static AddressRecord makeFake() {
+    public static AddressRow makeFake() {
         return makeFake(null);
     }
 
-    public static AddressRecord makeFake(Integer pseed) {
+    public static AddressRow makeFake(Integer pseed) {
         Integer seed = pseed != null ? pseed : 0;
-        AddressRecord addressRec = new AddressRecord();
+        AddressRow addressRec = new AddressRow();
         addressRec.setFullAddressString(String.format("Street %s City Lol", String.valueOf(seed)));
         return addressRec;
     }

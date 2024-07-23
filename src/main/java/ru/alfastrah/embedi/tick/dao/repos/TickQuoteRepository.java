@@ -5,9 +5,9 @@ import java.util.UUID;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
-import ru.alfastrah.embedi.tick.dao.models.TickQuoteRecord;
+import ru.alfastrah.embedi.tick.dao.models.TickInsuredPersonRow;
 
 @Repository
-public interface TickQuoteRepository extends ReactiveCrudRepository<TickQuoteRecord, UUID> {
+public interface TickQuoteRepository extends ReactiveCrudRepository<TickInsuredPersonRow, UUID> {
 
 }

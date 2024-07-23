@@ -7,7 +7,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table(name = "addresses")
-public class AddressRecord {
+public class AddressRow {
 
     @Id
     private UUID id;

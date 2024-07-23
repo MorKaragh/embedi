@@ -7,8 +7,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import ru.alfastrah.embedi.tick.models.Person;
+
 @Table(name = "persons")
-public class PersonRecord {
+public class PersonRow {
 
     @Id
     private UUID id;

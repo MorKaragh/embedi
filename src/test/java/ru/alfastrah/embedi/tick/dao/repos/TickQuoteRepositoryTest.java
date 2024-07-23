@@ -18,8 +18,8 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
 
-import ru.alfastrah.embedi.tick.dao.models.TickQuoteRecord;
-import ru.alfastrah.embedi.tick.dao.models.TickQuoteRecordTest;
+import ru.alfastrah.embedi.tick.dao.models.TickQuoteRow;
+import ru.alfastrah.embedi.tick.dao.models.TickQuoteRowTestData;
 
 @DataR2dbcTest
 @Testcontainers
@@ -58,7 +58,7 @@ public class TickQuoteRepositoryTest {
 
     @Test
     public void testSave() {
-        TickQuoteRecord record = tickQuoteRepository.save(TickQuoteRecordTest.makeFake()).block();
+        TickQuoteRow record = tickQuoteRepository.save(TickQuoteRowTestData.makeFake()).block();
         assertNotNull(record);
         assertNotNull(record.getId());
 

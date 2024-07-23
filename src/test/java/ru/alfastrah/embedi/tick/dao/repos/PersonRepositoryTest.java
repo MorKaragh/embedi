@@ -21,8 +21,8 @@ import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
 
 import reactor.core.publisher.Flux;
-import ru.alfastrah.embedi.tick.dao.models.PersonRecord;
-import ru.alfastrah.embedi.tick.dao.models.PersonRecordTest;
+import ru.alfastrah.embedi.tick.dao.models.PersonRow;
+import ru.alfastrah.embedi.tick.dao.models.PersonRowTestData;
  
 @DataR2dbcTest
 @Testcontainers
@@ -63,13 +63,13 @@ public class PersonRepositoryTest {
     void testFindByFirstNameAndLastNameAndBirthDate() {
         postgres.followOutput(logConsumer);
         System.out.println(postgres.getJdbcUrl());
-        PersonRecord fake = PersonRecordTest.makeFake(1);
+        PersonRow fake = PersonRowTestData.makeFake(1);
         repository.save(fake).block();
-        Flux<PersonRecord> found = repository.findByFirstNameAndLastNameAndBirthDate(
+        Flux<PersonRow> found = repository.findByFirstNameAndLastNameAndBirthDate(
                 fake.getFirstName(),
                 fake.getLastName(),
                 fake.getBirthDate());
-        List<PersonRecord> foundList = found.collectList().block();
+        List<PersonRow> foundList = found.collectList().block();
         assertFalse(foundList.isEmpty());
     }
 

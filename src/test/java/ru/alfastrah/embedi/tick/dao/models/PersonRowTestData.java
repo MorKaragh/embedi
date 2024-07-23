@@ -3,15 +3,15 @@ package ru.alfastrah.embedi.tick.dao.models;
 import java.time.LocalDate;
 import java.time.Month;
 
-public class PersonRecordTest {
+public class PersonRowTestData {
 
-    public static PersonRecord makeFake() {
+    public static PersonRow makeFake() {
         return makeFake(null);
     }
 
-    public static PersonRecord makeFake(Integer pseed) {
+    public static PersonRow makeFake(Integer pseed) {
         Integer seed = pseed != null ? pseed : 0;
-        PersonRecord personRec = new PersonRecord();
+        PersonRow personRec = new PersonRow();
         personRec.setFirstName(String.format("FirstName", String.valueOf(seed)));
         personRec.setLastName(String.format("LastName", String.valueOf(seed)));
         personRec.setMiddleName(String.format("MiddleName", String.valueOf(seed)));

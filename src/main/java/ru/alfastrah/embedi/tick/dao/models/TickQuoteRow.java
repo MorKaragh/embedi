@@ -8,7 +8,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table(name = "tick_quotes")
-public class TickQuoteRecord {
+public class TickQuoteRow {
 
     @Id
     private UUID id;

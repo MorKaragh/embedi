@@ -26,10 +26,10 @@ CREATE TABLE IF NOT EXISTS tick_quotes (
     address_id UUID REFERENCES addresses(id)
 );
 
-CREATE TABLE IF NOT EXISTS tick_insurers (
+CREATE TABLE IF NOT EXISTS tick_insured_persons (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     quote_id UUID REFERENCES tick_quotes(id),
-    insurer_id UUID REFERENCES persons(id)
+    person_id UUID REFERENCES persons(id)
 );
 
 
