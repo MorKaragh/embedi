@@ -41,7 +41,19 @@ public class TickDao {
         PersonRow insurerRow = RowMappers.personRow(quoteToSave.getInsurer());
         AddressRow addressRow = RowMappers.addressRow(quoteToSave.getAddress());
         TickQuoteRow tickQuoteRow = RowMappers.tickQuoteRow(quoteToSave);
-        Mono<PersonRow> savedInsurer = personRepository.save(insurerRow);
+        Mono<TickQuoteRow> savedQuoteM = Mono.zip(personRepository.save(insurerRow), addressRepository.save(addressRow))
+                .flatMap(data -> {
+                    tickQuoteRow.setInsurerId(data.getT1().getId());
+                    tickQuoteRow.setAddress_id(data.getT2().getId());
+                    return tickQuoteRepository.save(tickQuoteRow);
+                });
+        savedQuoteM.flatMap(t -> {
+            personRecords.stream().map(rec -> {
+                
+            })
+            return Mono.just(t);
+        });
+
 
         Flux<PersonRow> saveAll = personRepository.saveAll(personRecords);
         return null;
