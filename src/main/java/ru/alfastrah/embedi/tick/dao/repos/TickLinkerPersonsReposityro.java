@@ -5,10 +5,10 @@ import java.util.UUID;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
-import ru.alfastrah.embedi.tick.dao.models.AddressRow;
+import ru.alfastrah.embedi.tick.dao.models.TickLinkerPersonRow;
 
 @Repository
-public interface TickLinkedPersonsRepository extends ReactiveCrudRepository<AddressRow, UUID> {
+public interface TickLinkerPersonsReposityro extends ReactiveCrudRepository<TickLinkerPersonRow, UUID> {
 
     
 }

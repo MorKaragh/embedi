@@ -1,4 +1,4 @@
-package ru.alfastrah.embedi.tick;
+package ru.alfastrah.embedi.tick.calculation;
 
 import org.springframework.stereotype.Service;
 
@@ -11,5 +11,6 @@ public class TickCalcService {
     public Mono<TickQuote> calculate(TickQuote quote) {
        return null; 
     }
+
 }
 

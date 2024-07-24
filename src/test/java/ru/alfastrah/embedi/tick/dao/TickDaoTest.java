@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import ru.alfastrah.embedi.tick.models.TickQuoteTest;
+
 @SpringBootTest
 public class TickDaoTest {
 
@@ -15,6 +17,11 @@ public class TickDaoTest {
     @Test
     void testSaveQuote() {
         assertNotNull(dao);
+    }
+
+    @Test
+    void testSaveQuote2() {
+        dao.saveQuote(TickQuoteTest.makeFake()).block();
     }
 
 }

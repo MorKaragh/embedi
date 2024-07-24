@@ -10,10 +10,11 @@ import reactor.core.publisher.Mono;
 import ru.alfastrah.embedi.tick.dao.models.AddressRow;
 import ru.alfastrah.embedi.tick.dao.models.PersonRow;
 import ru.alfastrah.embedi.tick.dao.models.RowMappers;
+import ru.alfastrah.embedi.tick.dao.models.TickLinkerPersonRow;
 import ru.alfastrah.embedi.tick.dao.models.TickQuoteRow;
 import ru.alfastrah.embedi.tick.dao.repos.AddressRepository;
 import ru.alfastrah.embedi.tick.dao.repos.PersonRepository;
-import ru.alfastrah.embedi.tick.dao.repos.TickLinkedPersonsRepository;
+import ru.alfastrah.embedi.tick.dao.repos.TickLinkerPersonsReposityro;
 import ru.alfastrah.embedi.tick.dao.repos.TickQuoteRepository;
 import ru.alfastrah.embedi.tick.models.TickQuote;
 
@@ -23,12 +24,12 @@ public class TickDao {
     private final TickQuoteRepository tickQuoteRepository;
     private final AddressRepository addressRepository;
     private final PersonRepository personRepository;
-    private final TickLinkedPersonsRepository linkedPersonsRepository;
+    private final TickLinkerPersonsReposityro linkedPersonsRepository;
 
     public TickDao(TickQuoteRepository tickQuoteRepository,
             AddressRepository addressRepository,
             PersonRepository personRepository,
-            TickLinkedPersonsRepository linkedPersonsRepository) {
+            TickLinkerPersonsReposityro linkedPersonsRepository) {
         this.tickQuoteRepository = tickQuoteRepository;
         this.addressRepository = addressRepository;
         this.personRepository = personRepository;
@@ -38,24 +39,24 @@ public class TickDao {
     @Transactional
     public Mono<TickQuote> saveQuote(TickQuote quoteToSave) {
         List<PersonRow> personRecords = quoteToSave.getInsuredPersons().stream().map(RowMappers::personRow).toList();
+        personRecords.forEach(System.out::println);
         PersonRow insurerRow = RowMappers.personRow(quoteToSave.getInsurer());
         AddressRow addressRow = RowMappers.addressRow(quoteToSave.getAddress());
         TickQuoteRow tickQuoteRow = RowMappers.tickQuoteRow(quoteToSave);
-        Mono<TickQuoteRow> savedQuoteM = Mono.zip(personRepository.save(insurerRow), addressRepository.save(addressRow))
+        return Mono.zip(personRepository.save(insurerRow), addressRepository.save(addressRow))
                 .flatMap(data -> {
                     tickQuoteRow.setInsurerId(data.getT1().getId());
                     tickQuoteRow.setAddress_id(data.getT2().getId());
                     return tickQuoteRepository.save(tickQuoteRow);
-                });
-        savedQuoteM.flatMap(t -> {
-            personRecords.stream().map(rec -> {
-                
-            })
-            return Mono.just(t);
-        });
-
-
-        Flux<PersonRow> saveAll = personRepository.saveAll(personRecords);
-        return null;
+                }).flatMap(t -> {
+                    return personRepository.saveAll(personRecords)
+                            .flatMap(savedPersons -> {
+                                var link = new TickLinkerPersonRow();
+                                link.setQuoteId(t.getId());
+                                link.setPersonId(savedPersons.getId());
+                                return linkedPersonsRepository.save(link);
+                            })
+                            .then(Mono.just(t));
+                }).then(Mono.just(new TickQuote()));
     }
 }

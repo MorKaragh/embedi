@@ -7,7 +7,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table(name = "tick_insured_persons")
-public class TickInsuredPersonRow {
+public class TickLinkerPersonRow {
 
     @Id
     private UUID id;
