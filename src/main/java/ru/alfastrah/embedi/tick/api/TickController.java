@@ -24,7 +24,7 @@ public class TickController {
     @PostMapping("/quotes")
     public Mono<TickCalcResponse> calculate(@RequestBody TickCalcReqeust request) {
         return calcService
-        .calculate(null)
+        .calculate(TickApiMapper.mapToQuote(request))
         .map(TickApiMapper::mapToResponse);
     }
 
