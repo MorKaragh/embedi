@@ -1,8 +1,10 @@
 package ru.alfastrah.embedi.prodstream;
 
+import java.math.BigDecimal;
+
 public class TickStreamCalcResult {
 
-    private Double premium;
+    private BigDecimal premium;
     private String calcId;
 
     public String getCalcId() {
@@ -13,11 +15,11 @@ public class TickStreamCalcResult {
         this.calcId = calcId;
     }
 
-    public Double getPremium() {
+    public BigDecimal getPremium() {
         return premium;
     }
 
-    public void setPremium(Double premium) {
+    public void setPremium(BigDecimal premium) {
         this.premium = premium;
     }
 

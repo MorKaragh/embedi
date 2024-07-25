@@ -21,7 +21,7 @@ public class TickQuoteRow {
     @Column("end_date")
     private LocalDateTime endDate;
     @Column("premium")
-    private Double premium;
+    private Long premium;
     @Column("stream_quote_id")
     private String streamCalcId;
 
@@ -65,11 +65,11 @@ public class TickQuoteRow {
         this.address_id = address_id;
     }
 
-    public Double getPremium() {
+    public Long getPremium() {
         return premium;
     }
 
-    public void setPremium(Double premium) {
+    public void setPremium(Long premium) {
         this.premium = premium;
     }
 

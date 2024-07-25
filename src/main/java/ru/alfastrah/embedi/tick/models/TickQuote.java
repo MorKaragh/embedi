@@ -1,5 +1,6 @@
 package ru.alfastrah.embedi.tick.models;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -13,7 +14,7 @@ public class TickQuote {
     private Address address;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private Double premium;
+    private BigDecimal premium;
     private String streamCalcId;
 
     public UUID getId() {
@@ -64,20 +65,20 @@ public class TickQuote {
         this.endDate = endDate;
     }
 
-    public Double getPremium() {
-        return premium;
-    }
-
-    public void setPremium(Double premium) {
-        this.premium = premium;
-    }
-
     public String getStreamCalcId() {
         return streamCalcId;
     }
 
     public void setStreamCalcId(String streamCalcId) {
         this.streamCalcId = streamCalcId;
+    }
+
+    public BigDecimal getPremium() {
+        return premium;
+    }
+
+    public void setPremium(BigDecimal premium) {
+        this.premium = premium;
     }
 
 }
