@@ -3,7 +3,7 @@ package ru.alfastrah.embedi.tick.models;
 import java.time.LocalDateTime;
 import java.util.stream.IntStream;
 
-public class TickQuoteTest {
+public class TickQuoteTestData {
 
     public static TickQuote makeFake(Integer seed) {
         int aSeed = seed != null ? seed : 0;

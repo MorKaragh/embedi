@@ -14,6 +14,7 @@ public class TickQuote {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private Double premium;
+    private String streamCalcId;
 
     public UUID getId() {
         return id;
@@ -69,6 +70,14 @@ public class TickQuote {
 
     public void setPremium(Double premium) {
         this.premium = premium;
+    }
+
+    public String getStreamCalcId() {
+        return streamCalcId;
+    }
+
+    public void setStreamCalcId(String streamCalcId) {
+        this.streamCalcId = streamCalcId;
     }
 
 }

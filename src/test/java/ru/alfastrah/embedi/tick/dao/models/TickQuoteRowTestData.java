@@ -9,7 +9,7 @@ public class TickQuoteRowTestData {
         tRecord.setStartDate(LocalDateTime.of(2014, 11, 5, 23, 34));
         tRecord.setEndDate(LocalDateTime.of(2015, 11, 5, 23, 33));
         tRecord.setPremium(100.50);
-        tRecord.setStreamQuoteId("ololo");
+        tRecord.setStreamCalcId("ololo");
         return tRecord;
     }
 

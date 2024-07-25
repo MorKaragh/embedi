@@ -57,6 +57,10 @@ public class TickDao {
                                 return linkedPersonsRepository.save(link);
                             })
                             .then(Mono.just(t));
-                }).then(Mono.just(new TickQuote()));
+                })
+                .flatMap(savedQuoteRow -> {
+                    quoteToSave.setId(savedQuoteRow.getId());
+                    return Mono.just(quoteToSave);
+                });
     }
 }

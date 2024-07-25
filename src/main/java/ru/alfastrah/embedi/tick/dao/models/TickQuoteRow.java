@@ -23,7 +23,7 @@ public class TickQuoteRow {
     @Column("premium")
     private Double premium;
     @Column("stream_quote_id")
-    private String streamQuoteId;
+    private String streamCalcId;
 
     public UUID getId() {
         return id;
@@ -73,12 +73,12 @@ public class TickQuoteRow {
         this.premium = premium;
     }
 
-    public String getStreamQuoteId() {
-        return streamQuoteId;
+    public String getStreamCalcId() {
+        return streamCalcId;
     }
 
-    public void setStreamQuoteId(String streamQuoteId) {
-        this.streamQuoteId = streamQuoteId;
+    public void setStreamCalcId(String streamQuoteId) {
+        this.streamCalcId = streamQuoteId;
     }
 
 }

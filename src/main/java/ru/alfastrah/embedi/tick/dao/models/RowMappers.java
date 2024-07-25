@@ -27,6 +27,7 @@ public class RowMappers {
         row.setEndDate(quote.getEndDate());
         row.setStartDate(quote.getStartDate());
         row.setPremium(quote.getPremium());
+        row.setStreamCalcId(quote.getStreamCalcId());
         return row;
     }
 }
