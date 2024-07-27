@@ -1,4 +1,4 @@
-package ru.alfastrah.embedi.agents.api;
+package ru.alfastrah.embedi.agents.api.models;
 
 import org.springframework.lang.NonNull;
 

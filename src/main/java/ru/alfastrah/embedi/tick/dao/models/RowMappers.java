@@ -24,6 +24,7 @@ public class RowMappers {
 
     public static TickQuoteRow tickQuoteRow(TickQuote quote) {
         TickQuoteRow row = new TickQuoteRow();
+        row.setAgentId(quote.getAgentId());
         row.setEndDate(quote.getEndDate());
         row.setStartDate(quote.getStartDate());
         row.setPremium(quote.getPremium() != null 

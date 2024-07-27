@@ -12,6 +12,8 @@ public class TickQuoteRow {
 
     @Id
     private UUID id;
+    @Column("agent_id")
+    private UUID agentId;
     @Column("insurer_id")
     private UUID insurerId;
     @Column("address_id")
@@ -79,6 +81,14 @@ public class TickQuoteRow {
 
     public void setStreamCalcId(String streamQuoteId) {
         this.streamCalcId = streamQuoteId;
+    }
+
+    public UUID getAgentId() {
+        return agentId;
+    }
+
+    public void setAgentId(UUID agentId) {
+        this.agentId = agentId;
     }
 
 }

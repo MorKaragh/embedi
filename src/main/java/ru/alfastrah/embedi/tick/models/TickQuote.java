@@ -9,6 +9,7 @@ import java.util.UUID;
 public class TickQuote {
 
     private UUID id;
+    private UUID agentId;
     private List<Person> insuredPersons;
     private Person insurer;
     private Address address;
@@ -79,6 +80,14 @@ public class TickQuote {
 
     public void setPremium(BigDecimal premium) {
         this.premium = premium;
+    }
+
+    public UUID getAgentId() {
+        return agentId;
+    }
+
+    public void setAgentId(UUID agentId) {
+        this.agentId = agentId;
     }
 
 }

@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import reactor.core.publisher.Mono;
 import ru.alfastrah.embedi.agents.AgentsService;
+import ru.alfastrah.embedi.agents.api.models.AgentMapper;
+import ru.alfastrah.embedi.agents.api.models.CreateAgentRequest;
+import ru.alfastrah.embedi.agents.api.models.CreateAgentResponse;
 
 @RestController
 @RequestMapping("/api/v1/agents")
@@ -22,7 +25,7 @@ public class AgentsController {
     public Mono<CreateAgentResponse> createAgent(@RequestBody CreateAgentRequest request) {
         return service
                 .saveAgent(AgentMapper.fromRequest(request))
-                .map(a -> new CreateAgentResponse());
+                .map(a -> new CreateAgentResponse(a.getId()));
     }
 
 }

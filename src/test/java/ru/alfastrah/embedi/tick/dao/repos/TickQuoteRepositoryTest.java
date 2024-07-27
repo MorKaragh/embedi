@@ -18,6 +18,9 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
 
+import ru.alfastrah.embedi.agents.dao.AgentsRepository;
+import ru.alfastrah.embedi.agents.dao.models.AgentRecord;
+import ru.alfastrah.embedi.agents.dao.models.AgentStatus;
 import ru.alfastrah.embedi.tick.dao.models.TickQuoteRow;
 import ru.alfastrah.embedi.tick.dao.models.TickQuoteRowTestData;
 
@@ -56,9 +59,18 @@ public class TickQuoteRepositoryTest {
     @Autowired
     private TickQuoteRepository tickQuoteRepository;
 
+    @Autowired
+    private AgentsRepository agentsRepository;
+
     @Test
     public void testSave() {
-        TickQuoteRow record = tickQuoteRepository.save(TickQuoteRowTestData.makeFake()).block();
+        AgentRecord agent = new AgentRecord();
+        agent.setName("fakeAgent");
+        agent.setStatus(AgentStatus.ACTIVE);
+        agent = agentsRepository.save(agent).block();
+        TickQuoteRow fake = TickQuoteRowTestData.makeFake();
+        fake.setAgentId(agent.getId());
+        TickQuoteRow record = tickQuoteRepository.save(fake).block();
         assertNotNull(record);
         assertNotNull(record.getId());
 

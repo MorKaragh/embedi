@@ -4,12 +4,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class TickCalcReqeust {
 
     private List<PersonDto> insuredPersons = new ArrayList<>();
     private PersonDto insurer;
     private String address;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime startDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime endDate;
 
     public List<PersonDto> getInsuredPersons() {

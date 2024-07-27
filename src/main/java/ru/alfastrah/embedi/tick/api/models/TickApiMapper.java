@@ -1,6 +1,7 @@
 package ru.alfastrah.embedi.tick.api.models;
 
 import java.util.List;
+import java.util.UUID;
 
 import ru.alfastrah.embedi.tick.models.Address;
 import ru.alfastrah.embedi.tick.models.Person;
@@ -15,9 +16,10 @@ public class TickApiMapper {
         return null;
     }
 
-    public static TickQuote mapToQuote(TickCalcReqeust request) {
+    public static TickQuote mapToQuote(TickCalcReqeust request, UUID agentId) {
         TickQuote quote = new TickQuote();
         quote.setStartDate(request.getStartDate());
+        quote.setAgentId(agentId);
         quote.setEndDate(request.getEndDate());
         quote.setAddress(mapAddress(request));
         quote.setInsurer(mapPerson(request.getInsurer()));

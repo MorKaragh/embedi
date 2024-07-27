@@ -1,8 +1,9 @@
-package ru.alfastrah.embedi.agents.dao;
+package ru.alfastrah.embedi.agents.dao.models;
 
 import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 
@@ -11,7 +12,10 @@ public class AgentRecord {
 
     @Id
     private UUID id;
+    @Column("name")
     private String name;
+    @Column("status")
+    private Integer status;
 
     public UUID getId() {
         return id;
@@ -27,6 +31,18 @@ public class AgentRecord {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public void setStatus(AgentStatus status) {
+        this.status = status != null ? status.getValue() : null;
     }
 
 }

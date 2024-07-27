@@ -2,10 +2,13 @@ package ru.alfastrah.embedi.tick.api.models;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class PersonDto {
     private String firstName;
     private String lastName;
     private String middleName;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
 
     public String getFirstName() {
