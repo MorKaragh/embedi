@@ -4,10 +4,15 @@ import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.validation.constraints.NotNull;
+
 public class PersonDto {
+    @NotNull(message = "Имя не может быть пустым")
     private String firstName;
+    @NotNull(message = "Фамилия не может быть пустой")
     private String lastName;
     private String middleName;
+    @NotNull(message = "Дата рождения не может быть пустой")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
 

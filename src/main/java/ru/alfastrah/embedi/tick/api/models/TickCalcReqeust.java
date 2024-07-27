@@ -6,13 +6,19 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.validation.constraints.NotNull;
+
 public class TickCalcReqeust {
 
     private List<PersonDto> insuredPersons = new ArrayList<>();
+    @NotNull(message = "Страхователь должен быть указан")
     private PersonDto insurer;
+    @NotNull(message = "Адрес должен быть указан")
     private String address;
+    @NotNull(message = "Дата начала должна быть указана")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime startDate;
+    @NotNull(message = "Дата окончания должна быть указана")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime endDate;
 

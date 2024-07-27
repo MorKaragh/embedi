@@ -1,6 +1,7 @@
 package ru.alfastrah.embedi.tick.dao;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import ru.alfastrah.embedi.tick.dao.repos.AddressRepository;
 import ru.alfastrah.embedi.tick.dao.repos.PersonRepository;
 import ru.alfastrah.embedi.tick.dao.repos.TickLinkerPersonsReposityro;
 import ru.alfastrah.embedi.tick.dao.repos.TickQuoteRepository;
+import ru.alfastrah.embedi.tick.models.Person;
 import ru.alfastrah.embedi.tick.models.TickQuote;
 
 @Component
@@ -61,4 +63,24 @@ public class TickDao {
                     return Mono.just(quoteToSave);
                 });
     }
+
+    public Mono<TickQuote> findById(UUID tickQuoteId) {
+        loadQuoteMainData(tickQuoteId);
+        loadInsuredPersons(tickQuoteId);
+        return null;
+    }
+
+    private Mono<TickQuote> loadQuoteMainData(UUID tickQuoteId) {
+        return tickQuoteRepository.findById(tickQuoteId)
+            .map(RowMappers::toTickQuote);
+    }
+
+    private Mono<List<Person>> loadInsuredPersons(UUID tickQuoteId) {
+        return linkedPersonsRepository.findAllByQuoteId(tickQuoteId)
+                .map(link -> link.getPersonId())
+                .collectList()
+                .flatMap(links -> personRepository.findAllById(links).collectList())
+                .map(persons -> persons.stream().map(RowMappers::toPerson).toList());
+    }
+
 }
