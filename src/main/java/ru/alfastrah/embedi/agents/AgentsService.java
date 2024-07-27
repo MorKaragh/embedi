@@ -10,8 +10,8 @@ import reactor.core.publisher.Mono;
 import ru.alfastrah.embedi.agents.api.models.AgentMapper;
 import ru.alfastrah.embedi.agents.api.models.AgentNotFoundException;
 import ru.alfastrah.embedi.agents.dao.AgentsRepository;
-import ru.alfastrah.embedi.agents.dao.models.AgentStatus;
 import ru.alfastrah.embedi.agents.models.Agent;
+import ru.alfastrah.embedi.agents.models.AgentStatus;
 
 @Service
 public class AgentsService {
@@ -34,7 +34,7 @@ public class AgentsService {
     public Mono<Agent> saveAgent(Agent agent) {
         return repository
                 .save(AgentMapper.toAgentRow(agent))
-                .map(saved -> AgentMapper.fromAgentRow(saved));
+                .map(saved -> AgentMapper.toAgent(saved));
     }
 
 }

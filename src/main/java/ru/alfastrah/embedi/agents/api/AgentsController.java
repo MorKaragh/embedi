@@ -24,7 +24,7 @@ public class AgentsController {
     @PostMapping("/")
     public Mono<CreateAgentResponse> createAgent(@RequestBody CreateAgentRequest request) {
         return service
-                .saveAgent(AgentMapper.fromRequest(request))
+                .saveAgent(AgentMapper.toAgent(request))
                 .map(a -> new CreateAgentResponse(a.getId()));
     }
 

@@ -2,8 +2,6 @@ package ru.alfastrah.embedi.agents.models;
 
 import java.util.UUID;
 
-import ru.alfastrah.embedi.agents.dao.models.AgentStatus;
-
 public class Agent {
 
     private UUID id;

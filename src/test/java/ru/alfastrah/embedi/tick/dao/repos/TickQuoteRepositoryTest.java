@@ -19,8 +19,8 @@ import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
 
 import ru.alfastrah.embedi.agents.dao.AgentsRepository;
-import ru.alfastrah.embedi.agents.dao.models.AgentRecord;
-import ru.alfastrah.embedi.agents.dao.models.AgentStatus;
+import ru.alfastrah.embedi.agents.dao.models.AgentRow;
+import ru.alfastrah.embedi.agents.models.AgentStatus;
 import ru.alfastrah.embedi.tick.dao.models.TickQuoteRow;
 import ru.alfastrah.embedi.tick.dao.models.TickQuoteRowTestData;
 
@@ -64,7 +64,7 @@ public class TickQuoteRepositoryTest {
 
     @Test
     public void testSave() {
-        AgentRecord agent = new AgentRecord();
+        AgentRow agent = new AgentRow();
         agent.setName("fakeAgent");
         agent.setStatus(AgentStatus.ACTIVE);
         agent = agentsRepository.save(agent).block();

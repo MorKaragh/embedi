@@ -1,4 +1,4 @@
-package ru.alfastrah.embedi.agents.dao.models;
+package ru.alfastrah.embedi.agents.models;
 
 import java.util.Arrays;
 

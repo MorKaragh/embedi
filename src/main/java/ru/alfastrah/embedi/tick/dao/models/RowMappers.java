@@ -6,7 +6,7 @@ import ru.alfastrah.embedi.tick.models.TickQuote;
 
 public class RowMappers {
 
-    public static PersonRow personRow(Person person) {
+    public static PersonRow toPersonRow(Person person) {
         PersonRow record = new PersonRow();
         record.setBirthDate(person.getBirthDate());
         record.setFirstName(person.getFirstName());
@@ -16,13 +16,13 @@ public class RowMappers {
         return record;
     }
 
-    public static AddressRow addressRow(Address address) {
+    public static AddressRow toAddressRow(Address address) {
         AddressRow row = new AddressRow();
         row.setFullAddressString(address.getFullAddressString());
         return row;
     }
 
-    public static TickQuoteRow tickQuoteRow(TickQuote quote) {
+    public static TickQuoteRow toTickQuoteRow(TickQuote quote) {
         TickQuoteRow row = new TickQuoteRow();
         row.setAgentId(quote.getAgentId());
         row.setEndDate(quote.getEndDate());

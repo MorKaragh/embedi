@@ -62,7 +62,6 @@ public class PersonRepositoryTest {
     @Test
     void testFindByFirstNameAndLastNameAndBirthDate() {
         postgres.followOutput(logConsumer);
-        System.out.println(postgres.getJdbcUrl());
         PersonRow fake = PersonRowTestData.makeFake(1);
         repository.save(fake).block();
         Flux<PersonRow> found = repository.findByFirstNameAndLastNameAndBirthDate(

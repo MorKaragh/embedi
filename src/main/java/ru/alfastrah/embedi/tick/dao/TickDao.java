@@ -37,11 +37,10 @@ public class TickDao {
 
     @Transactional
     public Mono<TickQuote> saveQuote(TickQuote quoteToSave) {
-        List<PersonRow> personRecords = quoteToSave.getInsuredPersons().stream().map(RowMappers::personRow).toList();
-        personRecords.forEach(System.out::println);
-        PersonRow insurerRow = RowMappers.personRow(quoteToSave.getInsurer());
-        AddressRow addressRow = RowMappers.addressRow(quoteToSave.getAddress());
-        TickQuoteRow tickQuoteRow = RowMappers.tickQuoteRow(quoteToSave);
+        List<PersonRow> personRecords = quoteToSave.getInsuredPersons().stream().map(RowMappers::toPersonRow).toList();
+        PersonRow insurerRow = RowMappers.toPersonRow(quoteToSave.getInsurer());
+        AddressRow addressRow = RowMappers.toAddressRow(quoteToSave.getAddress());
+        TickQuoteRow tickQuoteRow = RowMappers.toTickQuoteRow(quoteToSave);
         return Mono.zip(personRepository.save(insurerRow), addressRepository.save(addressRow))
                 .flatMap(data -> {
                     tickQuoteRow.setInsurerId(data.getT1().getId());

@@ -6,9 +6,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import ru.alfastrah.embedi.agents.models.AgentStatus;
+
 
 @Table(name = "agents")
-public class AgentRecord {
+public class AgentRow {
 
     @Id
     private UUID id;

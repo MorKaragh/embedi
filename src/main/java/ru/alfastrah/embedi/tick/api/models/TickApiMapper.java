@@ -9,29 +9,29 @@ import ru.alfastrah.embedi.tick.models.TickQuote;
 
 public class TickApiMapper {
 
-    public static TickCalcResponse mapToResponse(TickQuote quote) {
+    public static TickCalcResponse toTickCalcResponse(TickQuote quote) {
         TickCalcResponse response = new TickCalcResponse();
         response.setId(quote.getId());
         response.setPremium(quote.getPremium());
-        return null;
+        return response;
     }
 
-    public static TickQuote mapToQuote(TickCalcReqeust request, UUID agentId) {
+    public static TickQuote toTickQuote(TickCalcReqeust request, UUID agentId) {
         TickQuote quote = new TickQuote();
         quote.setStartDate(request.getStartDate());
         quote.setAgentId(agentId);
         quote.setEndDate(request.getEndDate());
-        quote.setAddress(mapAddress(request));
-        quote.setInsurer(mapPerson(request.getInsurer()));
-        quote.setInsuredPersons(mapInsuredPersons(request));
+        quote.setAddress(toAddress(request));
+        quote.setInsurer(toPerson(request.getInsurer()));
+        quote.setInsuredPersons(toPersons(request));
         return quote;
     }
 
-    private static List<Person> mapInsuredPersons(TickCalcReqeust request) {
-        return request.getInsuredPersons().stream().map(p -> mapPerson(p)).toList();
+    private static List<Person> toPersons(TickCalcReqeust request) {
+        return request.getInsuredPersons().stream().map(p -> toPerson(p)).toList();
     }
 
-    private static Person mapPerson(PersonDto dto) {
+    private static Person toPerson(PersonDto dto) {
         Person person = new Person(); 
         person.setFirstName(dto.getFirstName());
         person.setLastName(dto.getLastName());
@@ -40,7 +40,7 @@ public class TickApiMapper {
         return person;
     }
 
-    private static Address mapAddress(TickCalcReqeust request) {
+    private static Address toAddress(TickCalcReqeust request) {
         Address address = new Address();
         address.setFullAddressString(request.getAddress());
         return address;
