@@ -66,9 +66,6 @@ public class TickDaoTest {
     @Autowired
     private AgentsRepository agentsRepository;
 
-    @Autowired
-    private AddressRepository addressRepository;
-
     @Test
     void testCreates() {
         assertNotNull(dao);
@@ -86,14 +83,7 @@ public class TickDaoTest {
         TickQuote saved = dao.saveQuote(toSave).block();
         assertNotNull(saved.getId());
         TickQuote loaded = dao.findById(saved.getId()).block();
-        System.out.println(loaded);
-        AddressRow block = addressRepository.findById(loaded.getAddress().getId()).block();
-        AddressRow blockLast = addressRepository.findAll().blockLast();
-        System.out.println("******** ADDRESS *******");
-        System.out.println(RowMappers.toAddress(block));
-        System.out.println(block);
-        System.out.println(blockLast);
-        //assertNotNull(loaded);
+        assertNotNull(loaded);
     }
 
 }
