@@ -34,5 +34,4 @@ public class TickController {
                 .map(q -> ResponseEntity.ok(TickApiMapper.toTickCalcResponse(q)));
     }
 
-
 }

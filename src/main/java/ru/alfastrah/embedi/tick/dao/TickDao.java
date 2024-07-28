@@ -65,14 +65,21 @@ public class TickDao {
     }
 
     public Mono<TickQuote> findById(UUID tickQuoteId) {
-        loadQuoteMainData(tickQuoteId);
-        loadInsuredPersons(tickQuoteId);
-        return null;
+        return Mono.zip(loadQuoteMainData(tickQuoteId), loadInsuredPersons(tickQuoteId))
+                .flatMap(tuple -> {
+                    tuple.getT1().setInsuredPersons(tuple.getT2());
+                    return Mono.just(tuple.getT1());
+                }).flatMap(quote -> {
+                    return addressRepository.findById(quote.getAddress().getId()).map(addr -> {
+                        quote.setAddress(RowMappers.toAddress(addr));
+                        return quote;
+                    });
+                });
     }
 
     private Mono<TickQuote> loadQuoteMainData(UUID tickQuoteId) {
         return tickQuoteRepository.findById(tickQuoteId)
-            .map(RowMappers::toTickQuote);
+                .map(RowMappers::toTickQuote);
     }
 
     private Mono<List<Person>> loadInsuredPersons(UUID tickQuoteId) {

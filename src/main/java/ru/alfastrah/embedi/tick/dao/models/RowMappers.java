@@ -53,9 +53,16 @@ public class RowMappers {
         quote.setEndDate(row.getEndDate());
         quote.setAgentId(row.getAgentId());
         quote.setStreamCalcId(row.getStreamCalcId());
+        quote.setAddress(new Address().setId(row.getId()));
         quote.setPremium(row.getPremium() != null
                 ? new BigDecimal(row.getPremium()).divide(new BigDecimal(100))
                 : null);
         return quote;
+    }
+
+    public static Address toAddress(AddressRow row) {
+        Address addr = new Address();
+        addr.setFullAddressString(row.getFullAddressString());
+        return addr;
     }
 }
