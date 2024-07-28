@@ -53,7 +53,8 @@ public class RowMappers {
         quote.setEndDate(row.getEndDate());
         quote.setAgentId(row.getAgentId());
         quote.setStreamCalcId(row.getStreamCalcId());
-        quote.setAddress(new Address().setId(row.getId()));
+        quote.setInsurer(new Person().setId(row.getInsurerId()));
+        quote.setAddress(new Address().setId(row.getAddress_id()));
         quote.setPremium(row.getPremium() != null
                 ? new BigDecimal(row.getPremium()).divide(new BigDecimal(100))
                 : null);
@@ -62,6 +63,7 @@ public class RowMappers {
 
     public static Address toAddress(AddressRow row) {
         Address addr = new Address();
+        addr.setId(row.getId());
         addr.setFullAddressString(row.getFullAddressString());
         return addr;
     }

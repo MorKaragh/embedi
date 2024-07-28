@@ -1,5 +1,6 @@
 package ru.alfastrah.embedi.tick.dao;
 
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
@@ -17,6 +18,14 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
 
+import reactor.core.publisher.Mono;
+import ru.alfastrah.embedi.agents.dao.AgentsRepository;
+import ru.alfastrah.embedi.agents.dao.models.AgentRow;
+import ru.alfastrah.embedi.agents.models.AgentStatus;
+import ru.alfastrah.embedi.tick.dao.models.AddressRow;
+import ru.alfastrah.embedi.tick.dao.models.RowMappers;
+import ru.alfastrah.embedi.tick.dao.repos.AddressRepository;
+import ru.alfastrah.embedi.tick.models.TickQuote;
 import ru.alfastrah.embedi.tick.models.TickQuoteTestData;
 
 @SpringBootTest
@@ -54,24 +63,37 @@ public class TickDaoTest {
     @Autowired
     private TickDao dao;
 
+    @Autowired
+    private AgentsRepository agentsRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
+
     @Test
-    void testSaveQuote() {
+    void testCreates() {
         assertNotNull(dao);
     }
 
     @Test
-    void testSaveQuote2() {
-        dao.saveQuote(TickQuoteTestData.makeFake()).block();
-    }
-
-    @Test
-    void testFindById() {
-        
-    }
-
-    @Test
-    void testSaveQuote3() {
-        
+    void testSaveLoadQuote() {
+        AgentRow agent = new AgentRow();
+        agent.setName("AgentName");
+        agent.setStatus(AgentStatus.ACTIVE);
+        AgentRow savedAgent = agentsRepository.save(agent).block();
+        TickQuote toSave = TickQuoteTestData.makeFake();
+        assertNull(toSave.getId());
+        toSave.setAgentId(savedAgent.getId());
+        TickQuote saved = dao.saveQuote(toSave).block();
+        assertNotNull(saved.getId());
+        TickQuote loaded = dao.findById(saved.getId()).block();
+        System.out.println(loaded);
+        AddressRow block = addressRepository.findById(loaded.getAddress().getId()).block();
+        AddressRow blockLast = addressRepository.findAll().blockLast();
+        System.out.println("******** ADDRESS *******");
+        System.out.println(RowMappers.toAddress(block));
+        System.out.println(block);
+        System.out.println(blockLast);
+        //assertNotNull(loaded);
     }
 
 }

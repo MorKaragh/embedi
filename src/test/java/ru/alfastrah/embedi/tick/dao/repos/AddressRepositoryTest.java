@@ -65,4 +65,5 @@ public class AddressRepositoryTest {
         assertNotNull(found);
         assertEquals(saved.getFullAddressString(), found.getFullAddressString());
     }
+
 }

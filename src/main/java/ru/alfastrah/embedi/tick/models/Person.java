@@ -15,8 +15,9 @@ public class Person {
         return id;
     }
 
-    public void setId(UUID id) {
+    public Person setId(UUID id) {
         this.id = id;
+        return this;
     }
 
     public String getFirstName() {
@@ -49,6 +50,12 @@ public class Person {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", middleName=" + middleName
+                + ", birthDate=" + birthDate + "]";
     }
 
 }

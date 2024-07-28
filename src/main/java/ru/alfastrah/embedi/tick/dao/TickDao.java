@@ -3,6 +3,8 @@ package ru.alfastrah.embedi.tick.dao;
 import java.util.List;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +23,8 @@ import ru.alfastrah.embedi.tick.models.TickQuote;
 
 @Component
 public class TickDao {
+
+    private Logger logger = LoggerFactory.getLogger(TickDao.class);
 
     private final TickQuoteRepository tickQuoteRepository;
     private final AddressRepository addressRepository;
@@ -69,11 +73,19 @@ public class TickDao {
                 .flatMap(tuple -> {
                     tuple.getT1().setInsuredPersons(tuple.getT2());
                     return Mono.just(tuple.getT1());
+                })
+                .flatMap(quote -> {
+                    return addressRepository.findById(quote.getAddress().getId())
+                            .map(addr -> {
+                                quote.setAddress(RowMappers.toAddress(addr));
+                                return quote;
+                            });
                 }).flatMap(quote -> {
-                    return addressRepository.findById(quote.getAddress().getId()).map(addr -> {
-                        quote.setAddress(RowMappers.toAddress(addr));
-                        return quote;
-                    });
+                    return personRepository.findById(quote.getInsurer().getId())
+                            .map(insurer -> {
+                                quote.setInsurer(RowMappers.toPerson(insurer));
+                                return quote;
+                            });
                 });
     }
 

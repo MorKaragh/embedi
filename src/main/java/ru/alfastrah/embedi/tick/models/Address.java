@@ -25,4 +25,9 @@ public class Address {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "Address [id=" + id + ", fullAddressString=" + fullAddressString + "]";
+    }
+
 }

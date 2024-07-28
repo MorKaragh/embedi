@@ -90,4 +90,11 @@ public class TickQuote {
         this.agentId = agentId;
     }
 
+    @Override
+    public String toString() {
+        return "TickQuote [id=" + id + ", agentId=" + agentId + ", insuredPersons=" + insuredPersons + ", insurer="
+                + insurer + ", address=" + address + ", startDate=" + startDate + ", endDate=" + endDate + ", premium="
+                + premium + ", streamCalcId=" + streamCalcId + "]";
+    }
+
 }
