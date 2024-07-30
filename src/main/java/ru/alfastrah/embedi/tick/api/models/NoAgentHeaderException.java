@@ -8,5 +8,4 @@ public class NoAgentHeaderException extends BadRequestException {
         super("отсутствует заголовок x-agent-id");
     }
 
-    
 }

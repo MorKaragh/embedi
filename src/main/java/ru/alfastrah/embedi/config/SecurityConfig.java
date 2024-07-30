@@ -31,14 +31,14 @@ public class SecurityConfig {
         return http.build();
     }
 
-	@Bean
-	public MapReactiveUserDetailsService userDetailsService() {
-		UserDetails user = User.withDefaultPasswordEncoder()
-			.username("user")
-			.password("user")
-			.roles("USER")
-			.build();
-		return new MapReactiveUserDetailsService(user);
-	}
+    @Bean
+    public MapReactiveUserDetailsService userDetailsService() {
+        UserDetails user = User.withDefaultPasswordEncoder()
+                .username("user")
+                .password("user")
+                .roles("USER")
+                .build();
+        return new MapReactiveUserDetailsService(user);
+    }
 
 }

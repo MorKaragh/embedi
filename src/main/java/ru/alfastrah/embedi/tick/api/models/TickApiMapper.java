@@ -32,7 +32,7 @@ public class TickApiMapper {
     }
 
     private static Person toPerson(PersonDto dto) {
-        Person person = new Person(); 
+        Person person = new Person();
         person.setFirstName(dto.getFirstName());
         person.setLastName(dto.getLastName());
         person.setMiddleName(dto.getMiddleName());
