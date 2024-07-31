@@ -17,7 +17,7 @@ public class TickQuoteRow {
     @Column("insurer_id")
     private UUID insurerId;
     @Column("address_id")
-    private UUID address_id;
+    private UUID addressId;
     @Column("start_date")
     private LocalDateTime startDate;
     @Column("end_date")
@@ -59,12 +59,12 @@ public class TickQuoteRow {
         this.endDate = endDate;
     }
 
-    public UUID getAddress_id() {
-        return address_id;
+    public UUID getAddressId() {
+        return addressId;
     }
 
-    public void setAddress_id(UUID address_id) {
-        this.address_id = address_id;
+    public void setAddressId(UUID address_id) {
+        this.addressId = address_id;
     }
 
     public Long getPremium() {

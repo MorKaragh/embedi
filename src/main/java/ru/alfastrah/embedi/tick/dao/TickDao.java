@@ -50,7 +50,7 @@ public class TickDao {
         return Mono.zip(personRepository.save(insurerRow), addressRepository.save(addressRow))
                 .flatMap(data -> {
                     tickQuoteRow.setInsurerId(data.getT1().getId());
-                    tickQuoteRow.setAddress_id(data.getT2().getId());
+                    tickQuoteRow.setAddressId(data.getT2().getId());
                     return tickQuoteRepository.save(tickQuoteRow);
                 }).flatMap(t -> {
                     return personRepository.saveAll(personRecords)

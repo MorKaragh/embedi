@@ -54,7 +54,7 @@ public class RowMappers {
         quote.setAgentId(row.getAgentId());
         quote.setStreamCalcId(row.getStreamCalcId());
         quote.setInsurer(new Person().setId(row.getInsurerId()));
-        quote.setAddress(new Address().setId(row.getAddress_id()));
+        quote.setAddress(new Address().setId(row.getAddressId()));
         quote.setPremium(row.getPremium() != null
                 ? new BigDecimal(row.getPremium()).divide(new BigDecimal(100))
                 : null);
