@@ -1,0 +1,15 @@
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/EmbediApplicationTests.java
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/agents/api/AgentsControllerTest.java
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/tick/api/models/TickCalcReqeustTest.java
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/tick/calculation/TickCalcServiceTest.java
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/tick/dao/TickDaoTest.java
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/tick/dao/models/AddressRowTestData.java
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/tick/dao/models/PersonRowTestData.java
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/tick/dao/models/TickQuoteRowTestData.java
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/tick/dao/repos/AddressRepositoryTest.java
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/tick/dao/repos/ClasspathTest.java
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/tick/dao/repos/PersonRepositoryTest.java
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/tick/dao/repos/TickQuoteRepositoryTest.java
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/tick/models/AddressTestData.java
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/tick/models/PersonTestData.java
+/home/sergei/workspace/embedi/src/test/java/ru/alfastrah/embedi/tick/models/TickQuoteTestData.java
