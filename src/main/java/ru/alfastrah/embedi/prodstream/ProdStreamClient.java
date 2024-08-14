@@ -28,7 +28,7 @@ public class ProdStreamClient {
     public Mono<TickStreamIssueResult> issueTick(TickStreamIssueRequest request) {
         return streamWebClient
                 .post()
-                .uri("/calc")
+                .uri("/issue")
                 .body(BodyInserters.fromValue(request))
                 .retrieve()
                 .bodyToMono(TickStreamIssueResult.class);
