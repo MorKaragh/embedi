@@ -25,4 +25,13 @@ public class ProdStreamClient {
                 .bodyToMono(TickStreamCalcResult.class);
     }
 
+    public Mono<TickStreamIssueResult> issueTick(TickStreamIssueRequest request) {
+        return streamWebClient
+                .post()
+                .uri("/calc")
+                .body(BodyInserters.fromValue(request))
+                .retrieve()
+                .bodyToMono(TickStreamIssueResult.class);
+    }
+
 }
