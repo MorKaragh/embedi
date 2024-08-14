@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import reactor.core.publisher.Mono;
 import ru.alfastrah.embedi.prodstream.ProdStreamClient;
+import ru.alfastrah.embedi.prodstream.TickStreamIssueRequest;
 import ru.alfastrah.embedi.tick.dao.TickDao;
 import ru.alfastrah.embedi.tick.models.TickQuote;
 import ru.alfastrah.embedi.util.NotFoundException;
@@ -28,6 +29,7 @@ public class TickIssueService {
                         return Mono.error(new NotFoundException("Котировка не найдена"));
                     }
                     return Mono.just(q).map(o -> {
+                        streamClient.issueTick(new TickStreamIssueRequest().setCalcId(q.getStreamCalcId()));
                         return o;
                     });
                 });

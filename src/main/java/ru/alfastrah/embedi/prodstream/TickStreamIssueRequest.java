@@ -8,8 +8,9 @@ public class TickStreamIssueRequest {
         return calcId;
     }
 
-    public void setCalcId(String calcId) {
+    public TickStreamIssueRequest setCalcId(String calcId) {
         this.calcId = calcId;
+        return this;
     }
 
 }
